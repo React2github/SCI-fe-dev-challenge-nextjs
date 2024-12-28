@@ -23,16 +23,7 @@ Your task is to enhance and fix a provided card listing application, making it m
 
 ---
 
-## **Deliverables**
-
-### Submit the following:
-
-1. A link to your **GitHub repository** containing the completed project.
-2. **Instructions** on how to run the application locally, included in the `README.md`.
-
----
-
-## Instructions 
+## Instructions to Start Project
 
 1. Use NPM Install on root directory to install libraries
 2. Use NPM Run Build to build the project
