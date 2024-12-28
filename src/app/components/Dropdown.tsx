@@ -16,6 +16,7 @@ export default function Dropdown({onSelect}: DropdownProps) {
                 const res = await fetch('/api/catalog');
                 if (!res.ok) throw new Error('Failed to fetch dropdown options');
                 const result = await res.json();
+                // console.log(result.data[0]);
                 setOptions(result.data); // Ensure we set `options` to `result.data`
                 setLoading(false);
             } catch (err: unknown) {

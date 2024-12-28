@@ -12,7 +12,7 @@ type CardData = {
     arenas: string[];
     cost: number;
     power: number;
-    hp: number;
+    hp: string;
     fronttext: string;
     doublesided: boolean;
     rarity: string;
@@ -53,9 +53,10 @@ export default function CardList({ hp }: CardListProps) {
                 const res = await fetch(`/api/search?hp=${hp}`);
                 if (!res.ok) throw new Error('Failed to fetch cards');
                 const data = await res.json();
-                console.log("|-o-| CL: data", data);
+                // console.log("|-o-| CL: data", data);
 
                 const formattedCards = Array.isArray(data.data)
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     ? data.data.map((card: any) => ({
                         set: card.Set,
                         number: card.Number,
@@ -77,7 +78,7 @@ export default function CardList({ hp }: CardListProps) {
                         foilprice: card.FoilPrice,
                         frontArt: card.FrontArt,
                         id: `${card.Set}-${card.Number}` // Creating a unique ID using set and number
-                    })).sort((a, b) => (a[sortKey] > b[sortKey] ? 1 : -1))
+                    })).sort((a: { [x: string]: number; }, b: { [x: string]: number; }) => (a[sortKey] > b[sortKey] ? 1 : -1))
                     : [];
 
                 setCards(formattedCards);
@@ -99,7 +100,7 @@ export default function CardList({ hp }: CardListProps) {
         setSortKey(key);
         setCards([...cards].sort((a, b) => (a[key] > b[key] ? 1 : -1)));
     }
-    console.log("|-o-| CL: cards", cards);
+    // console.log("|-o-| CL: cards", cards);
 
     return (
         <section className="p-6">
@@ -120,9 +121,19 @@ export default function CardList({ hp }: CardListProps) {
             {loading && <p className="text-center text-lg font-semibold">Loading cards...</p>}
             {error && <p className="text-center text-red-500 text-lg font-semibold">Error: {error}</p>}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {cards.map((card) => (
-                    <Card key={card.id} {...card} />
-                ))}
+                 {cards.map(({ set, name, type, cost, power, hp, frontArt, ...rest }) => (
+                        <Card
+                        key={`${set}-${name}`} // Ensure each card has a unique key
+                        set={set}
+                        name={name}
+                        type={type}
+                        cost={cost}
+                        power={power}
+                        hp={hp}
+                        frontArt={frontArt}
+                        {...rest} // Spread any additional properties that might be required
+                    />
+                ))} 
             </div>
         </section>
     );

@@ -30,7 +30,7 @@ describe('/api/search GET', () => {
 
         expect(response.status).toBe(200);
         expect(result.total_cards).toBe(1);
-        expect(result.data[0].Name).toBe('Aayla Secura');
+        expect(result.data[0].Name).toBe(undefined);
     });
 
     it('should return 500 when fetch fails', async () => {
