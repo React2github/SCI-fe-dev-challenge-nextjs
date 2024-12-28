@@ -32,6 +32,12 @@ Your task is to enhance and fix a provided card listing application, making it m
 
 ---
 
+## Instructions 
+
+1. Use NPM Install on root directory to install libraries
+2. Use NPM Run Build to build the project
+3. Use NPM Run Start to start the project on localhost 
+
 ## **What We're Looking For**
 
 Your submission will be evaluated on the following criteria:
