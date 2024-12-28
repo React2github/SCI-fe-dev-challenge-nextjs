@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
+import "./card.css";
 
 type CardData = {
     set: string;
@@ -118,7 +119,7 @@ export default function CardList({ hp }: CardListProps) {
                     Sort by Power
                 </button>
             </div>
-            {loading && <p className="text-center text-lg font-semibold">Loading cards...</p>}
+            {loading && <p className="spinner text-center text-lg font-semibold"></p>}
             {error && <p className="text-center text-red-500 text-lg font-semibold">Error: {error}</p>}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                  {cards.map(({ set, name, type, cost, power, hp, frontArt, ...rest }) => (

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React from "react";
+import "./Card.css";
 
 type CardProps = {
   name: string;
@@ -26,7 +27,7 @@ export default function Card({
   frontArt,
 }: CardProps) {
   return (
-    <div className="card border border-gray-400 rounded-lg p-2 m-2 flex items-center bg-gray-800 text-white shadow-lg">
+    <div className="card border border-gray-400 rounded-lg p-2 m-2 flex items-center bg-gray-800 text-white shadow-lg fade">
       {/* Left Image Section */}
       <div className="w-32 h-32 flex-shrink-0 mr-4">
         <img
